@@ -1,0 +1,50 @@
+<% 
+function formatDate(dateString) {
+  // Ensure the input is a Date object
+  const dateVeriable = new Date(dateString);
+
+  // Format the date part
+  const formattedDate = dateVeriable.toISOString().split('T')[0];
+
+  // Format the time part
+  const formattedTime = dateVeriable.toTimeString().split(' ')[0];
+
+  // Combine the date and time
+  return `${formattedDate} ${formattedTime}`;
+}
+%>
+
+
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <h5 >Created at: <%= formatDate(blog.createdAt) %></h5>
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %>">delete</a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });    
+  </script>
+</body>
+</html>
