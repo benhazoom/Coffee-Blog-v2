@@ -13,7 +13,8 @@ View  - Rendered HTML (ejs) used for dynamic code injections, CSS
 Controller – Express.js application rendering  views, partials and database information and handling all requests for the DB.
 
 ## 🔧 Running the site 
-on this link - https://coffee-blog.onrender.com/about
+on this link - [https://coffee-blog.onrender.com/about](https://coffee-blog-v2.onrender.com/blogs)
+(takes a minute or two to render because im on free plan :s)
 
 or deploying:
 1. Download/clone the project from the repository.
